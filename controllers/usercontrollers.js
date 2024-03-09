@@ -13,8 +13,8 @@ const connection = mongoose.connection;
 const transporter = nodemailer.createTransport({
     service: 'gmail', // Your email service provider
     auth: {
-        user:process.env.EMAIL_USER, // Your email address from environment variable
-        pass:process.env.EMAIL_PASS,// Your email password from environment variable
+        user:process.env.EMAIL, // Your email address from environment variable
+        pass:process.env.PASS,// Your email password from environment variable
     }
     ,debug:true,
 });
