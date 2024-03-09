@@ -1,7 +1,7 @@
 const express=require("express");
 const router=express.Router();
 const { ObjectId } = require('mongoose').Types;
-const bcrypt=require("bcrypt");
+const bcryptjs=require("bcryptjs");
 const mongoose=require("mongoose");
 const crypto = require('crypto');
 const jwt=require("jsonwebtoken");
@@ -87,7 +87,7 @@ router.post("/Signup",async (req,res,next)=>{
         return res.json({msg:"email already exists",status:400})
        } 
        
-       const hashedpassword=await bcrypt.hash(password,10);
+       const hashedpassword=await bcryptjs.hash(password,10);
        const user= await users.insertOne({
         username,
         email,
@@ -159,7 +159,7 @@ router.post("/Login",async (req,res,next)=>{
     return res.json({msg:"email is not registered",status:400})
 }
    
-    const passwordvalidity= await bcrypt.compare(password,existinguser.password);
+    const passwordvalidity= await bcryptjs.compare(password,existinguser.password);
     
     console.log(passwordvalidity)
    
